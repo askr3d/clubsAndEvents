@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="htpp://www.thymeleaf.org">
+<head th:fragment="page_head">
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Algo cool</title>
+</head>
+<body>
+    <div
+        class="w-full flex items-center gap-4 p-4 bg-gray-200 shadow-md"
+        th:fragment="page_navbar">
+        <h1 class="text-xl font-bold">
+            Algo Cool
+        </h1>
+        <nav class="flex gap-2 flex-1 ml-3 text-lg">
+            <a th:href="@{/clubs}">
+                Clubs
+            </a>
+            <a th:href="@{/events}">
+                Events
+            </a>
+        </nav>
+    </div>
+
+    <div 
+        class="container mx-auto p-2"
+        th:fragment="page_contenido">
+        <div th:insert="~{::content}"></div>
+    </div>
+
+
+    <footer 
+        class="bg-gray-200 p-4"
+        th:fragment="page_footer">
+        <p class="text-center">
+            Todos los derechos reservados. Askr3d
+        </p>
+    </footer>
+</body>
+</html>

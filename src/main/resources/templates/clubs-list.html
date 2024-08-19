@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head th:replace="~{layout :: page_head}"></head>
+  <body>
+    
+    <nav th:replace="~{layout :: page_navbar}"></nav>
+    
+    <div th:replace="~{layout :: page_contenido}">
+        <div th:fragment="content">
+            <div class="my-5">
+                <!-- <a 
+                    class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-md cursor-pointer"
+                    th:href="@{/clubs/new}">
+                    <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    Agregar Club
+                </a> -->
+            </div>
+            <div>
+                <form th:action="@{/clubs/search}">
+                    <div class="mb-2 flex flex-col gap-1">
+                        <label class="text-xl font-bold text-gray-600" for="query">
+                            Search:
+                        </label>
+                        <input 
+                            class="border border-gray-400 rounded w-full p-2"
+                            type="text" th:value="${param.query}" name="query" id="query" placeholder="Type something to search">
+                    </div>
+                </form>
+            </div>
+            <h2 class="text-2xl font-bold mb-4 text-gray-900">Clubs</h2>
+            <div class="divide-y-2">
+                <div class="hover:bg-gray-100" th:each="club : ${clubs}">
+                    <div class="flex flex-col gap-2 mb-2">
+                        <h3 class="text-lg font-bold text-gray-600">
+                            Nombre:
+                            <span class="font-normal" th:text="${club.title}"></span>
+                        </h3>
+                        <div class="flex px-2">
+                            <p class="flex flex-col font-semibold">
+                                Descripcion: 
+                                <span class="font-normal" th:text="${club.content}"></span>
+                            </p>
+                        </div>
+                        <img class="w-32" th:src="${club.photoUrl}" th:alt="${club.photoUrl}">
+                        <div class="flex gap-4">
+                            <a 
+                                th:href="@{/clubs/{clubId}(clubId=${club.id})}"
+                                class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-md cursor-pointer">
+                                Ver
+                            </a>
+                            <a 
+                                th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-4 py-2 rounded-md cursor-pointer">
+                                Editar
+                            </a>
+                            <a
+                                th:href="@{/clubs/{clubId}/delete(clubId=${club.id})}"
+                                class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-md cursor-pointer">
+                                Eliminar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{layout :: page_footer}"></footer>
+  </body>
+</html>
